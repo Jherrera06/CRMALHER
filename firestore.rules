@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // CRM ALHER v157 - reglas temporales de prueba para descartar bloqueos de Firestore.
+    // Cuando el frontend quede estable, conviene endurecer por auth/roles.
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

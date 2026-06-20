@@ -1,0 +1,32 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /legajosVehiculos/{vehiculoId}/{allPaths=**} {
+      allow read, write: if true;
+    }
+    match /legajosPersonal/{legajoId}/{allPaths=**} {
+      allow read, write: if true;
+    }
+    match /clientes/{contactId}/{allPaths=**} {
+      allow read, write: if true;
+    }
+    match /comercial_visitas/{visitId}/{allPaths=**} {
+      allow read, write: if true;
+    }
+    match /documentacion_interna/{docId}/{allPaths=**} {
+      allow read, write: if true;
+    }
+    match /solicitudesFabrica/{solicitudId}/{allPaths=**} {
+      allow read, write: if true;
+    }
+    match /catalogosFabrica/{catalogoId}/{allPaths=**} {
+      allow read, write: if true;
+    }
+    match /controlCartones/{allPaths=**} {
+      allow read, write: if true;
+    }
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
