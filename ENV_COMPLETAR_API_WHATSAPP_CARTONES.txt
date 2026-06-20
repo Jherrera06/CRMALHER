@@ -1,0 +1,35 @@
+CRM ALHER v260 · ARCHIVO GUÍA PARA COMPLETAR APIs
+
+Ubicación correcta:
+  functions/.env
+
+Copiá y pegá este contenido dentro de functions/.env y reemplazá solo los valores indicados.
+
+WHATSAPP_VERIFY_TOKEN=ALHER.COM
+WHATSAPP_TOKEN=PEGAR_TOKEN_NUEVO_DE_META
+WHATSAPP_PHONE_NUMBER_ID=113013548315130
+WHATSAPP_API_VERSION=v23.0
+DEFAULT_RESPONSABLE=superadm
+ALHER_SALES_BOT_ENABLED=true
+
+CARTONES_SCAN_API_URL=https://vision.googleapis.com/v1/images:annotate
+CARTONES_SCAN_API_KEY=PEGAR_API_KEY_DE_GOOGLE_CLOUD
+CARTONES_SCAN_API_KEY_HEADER=key
+
+Notas:
+1) 113013548315130 es el Identificador de número de teléfono que mostraste en Meta.
+2) 942531718147656 es el WABA ID; no va en WHATSAPP_PHONE_NUMBER_ID.
+3) Google Cloud Vision usa la URL fija https://vision.googleapis.com/v1/images:annotate.
+4) Después de completar functions/.env, ejecutar desde la carpeta del proyecto:
+   cd functions
+   npm install
+   cd ..
+   firebase.cmd deploy --only functions,hosting
+
+Pruebas mínimas:
+- WhatsApp: enviarte un mensaje al CRM, verlo en Inbox y responder.
+- Cartones: Auditorías > Control de cartones > Verificar conexión; debe indicar API configurada en Functions.
+- Cartones: subir/tomar foto y escanear; debe guardar en Firestore controlCartones.
+
+# IMPORTANTE GOOGLE VISION: para evitar el error de llamadas no registradas,
+# la Function envía esta API Key como parámetro ?key= en la URL, no como Bearer.
